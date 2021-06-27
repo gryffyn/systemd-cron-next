@@ -10,22 +10,22 @@ repository = "https://github.com/systemd-cron/systemd-cron-next"
 version = "1.0.2"
 
 [build-dependencies]
-handlebars = "0.12.0"
+handlebars = "0.12.1"
 rustc-serialize = "0.3.20"
 
 [dependencies]
-cronparse = "0.5.0"
-docopt = "0.6.78"
-glob = "0.2.10"
-kernlog = "0.2.1"
-libc = "0.2.2"
-log = "0.3.4"
+cronparse = "0.5.1"
+docopt = "0.6.86"
+glob = "0.2.11"
+kernlog = "0.3.1"
+libc = "0.2.97"
+log = "0.4"
 md5 = "0.1.1"
 pgs-files = "0.0.6"
 rustc-serialize = "0.3.20"
 tempfile = "1.1.3"
-time = "0.1.34"
-users = "0.5.1"
+time = "0.1.44"
+users = "0.5.3"
 
 [features]
 persistent = []

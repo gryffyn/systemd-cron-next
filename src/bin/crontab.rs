@@ -27,7 +27,8 @@ extern "C" {
 }
 
 fn change_owner<P: AsRef<Path>>(path: P, owner: libc::uid_t, group: libc::gid_t) -> Result<(), io::Error> {
-    match unsafe { chown(CString::new(path.as_ref().to_str().unwrap().as_bytes()).unwrap().as_ptr(), owner, group) } {
+    let cstr = CString::new(path.as_ref().to_str().unwrap().as_bytes()).unwrap();
+    match unsafe { chown(cstr.as_ptr(), owner, group) } {
         0 => Ok(()),
         -1 => Err(io::Error::last_os_error()),
         _ => unreachable!(),
@@ -305,7 +306,7 @@ fn main() {
 }
 
 fn check_crontab_syntax<P: AsRef<Path>>(path: P) -> Result<(), CrontabFileError> {
-    match try!(CrontabFile::<UserCrontabEntry>::new(path)).find(Result::is_err) {
+    match CrontabFile::<UserCrontabEntry>::new(path)?.find(Result::is_err) {
         Some(Err(err)) => Err(err),
         _ => Ok(()),
     }
